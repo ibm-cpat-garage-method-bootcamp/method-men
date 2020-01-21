@@ -17,5 +17,9 @@ describe('fahrenheit-to-celsius', () => {
     test('212 degrees fahrenheit is 100 degress celsius', () => {
         expect(fahrenheitToCelsius(212)).toEqual(100);
     });
-    
+    test('when value is not a number then throw an error', () => {
+        expect(() => {
+            fahrenheitToCelsius('test');
+        }).toThrow(new Error('the value is not a number'));
+    });
 });
