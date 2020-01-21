@@ -30,6 +30,7 @@
   "author": "IBM Garage for Cloud",
   "license": "ISC",
   "dependencies": {
+    "@webpack-cli/init": "^0.3.0",
     "body-parser": "^1.17.2",
     "client": "file:./client",
     "cookie-parser": "^1.4.3",
@@ -43,7 +44,8 @@
   "devDependencies": {
     "@types/node": "^11.13.19",
     "nodemon": "^1.12.1",
+    "sonarqube-scanner": "^2.5.0",
     "supertest": "^4.0.2",
-    "sonarqube-scanner": "^2.5.0"
+    "webpack-cli": "^3.3.10"
   }
 }
