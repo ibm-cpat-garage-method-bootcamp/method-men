@@ -1,0 +1,6 @@
+[
+    {"name": "salami", "needed": "Yes", "aisle": "deli" },
+    {"name": "goat cheese", "needed": "No", "aisle": "dairy" },
+    {"name": "broccoli", "needed": "Yes", "aisle": "produce" },
+    {"name": "cookies", "needed": "Yes", "aisle": "bakery"}
+]
