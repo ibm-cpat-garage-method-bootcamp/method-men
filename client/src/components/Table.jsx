@@ -40,8 +40,10 @@ class Table extends Component {
 
  requestData() {
      axios.get('/api/data')
-      .then((response) => {
-          console.log(response);
+      .then(({ data }) => {
+          this.setState({
+            data
+          })
       })
  }
 

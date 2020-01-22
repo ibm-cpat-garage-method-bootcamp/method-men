@@ -21,8 +21,6 @@ module.exports = function(app){
 
 const dataRequestHandler = (req, res) => {
   fs.readFile('./server/data/db.json', 'utf8', (err, data) => {
-    console.log(data);
+    res.send(data);
   })
-  console.log('hit the thing');
-  res.send('you got the data!!!');
 }
