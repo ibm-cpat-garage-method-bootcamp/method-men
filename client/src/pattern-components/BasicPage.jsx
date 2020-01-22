@@ -6,31 +6,28 @@ class BasicPage extends Component {
   constructor(props) {
     super(props);
     
-    this.state = {name: ''}
+    this.state = {itemName: '', amount: '', aisle: ''}
+
+    this.handleChange = this.handleChange.bind(this);
   }
   
   handleChange = event => {
-    
- const username = this.username.value;
- const amount = this.amount.value;
- const aisle = this.aisle.value;
-
- const info = {username: username, amount: amount, aisle: aisle};
- const data = [...this.state.data, info];
- data.push(info);
-    
-    
-    this.setState({ data: data});
+    console.log('hey');
+    const name = event.target.name;
+    const value = event.target.value;
+    this.setState({
+      [name]: value
+    })
+   
   };
 
   
   handleSubmit = event => {
     event.preventDefault();
-    alert('Your username is: ' + this.input.value);
+    console.log(this.state);
+    console.log(JSON.stringify(this.state));    
+    // this.state = {itemName: '', amount: '', aisle: ''}   
   };
-  
-  
-
   
   
 
@@ -40,42 +37,33 @@ class BasicPage extends Component {
         <Header title="Basic Page" />
         
       
-        <form onSubmit = {this.handleChange}>
-         <label htmlFor="username">username</label>
-         <input
-           type="text"
-           name="username"
-           //value={this.state.username}
-           onChange={this.handleChange}
-           ref={(input) => this.username = input}
-         />
-<label htmlFor="amount">amount</label>
-<input
-           type="text"
-           name="amount"
-           value={this.state.amount}
-           onChange={this.handleChange}
-           ref={(input) => this.amount = input}
-         />
+        <form>
+            <label htmlFor="itemName">Item Name</label>
+            <input
+              onChange = {this.handleChange}
+              type="text"
+              name="itemName"
+            />
+            <label htmlFor="amount">amount</label>
+            <input
+              onChange = {this.handleChange}
+               type="text"
+                name="amount"
+                
+            />
          
-<label htmlFor="aisle">aisle</label>
-<input
-           type="text"
-           name="aisle"
-           value={this.state.aisle}
-           onChange={this.handleChange}
-           ref={(input) => this.aisle = input}
-         />
+            <label htmlFor="aisle">aisle</label>
+            <input
+                type="text"
+                name="aisle"
+                onChange = {this.handleChange}
+            />
+
+        <button onClick = {this.handleSubmit} type="submit" className="bx--row btn btn-primary">Save </button>
        </form>
+       
       
-       <button 
-     type="submit" 
-     className="btn btn-primary">Save
- </button>
-      
-      
-      
-      
+
       </div>
     
 
@@ -83,8 +71,5 @@ class BasicPage extends Component {
     );
   }
 }
-  
-  
-
 
 export default BasicPage;
