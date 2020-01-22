@@ -38,9 +38,15 @@ class Table extends Component {
     })
  }
 
+ requestData() {
+     axios.get('/api/data')
+      .then((response) => {
+          console.log(response);
+      })
+ }
+
  componentDidMount() {
-   axios.get('/api/test')
-    .then((response) => console.log(response));
+   this.requestData()
  }
 
   render() {
