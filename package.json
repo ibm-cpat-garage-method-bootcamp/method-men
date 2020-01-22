@@ -31,6 +31,7 @@
   "license": "ISC",
   "dependencies": {
     "@webpack-cli/init": "^0.3.0",
+    "axios": "^0.19.2",
     "body-parser": "^1.17.2",
     "client": "file:./client",
     "cookie-parser": "^1.4.3",

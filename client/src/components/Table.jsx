@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import Header from "../pattern-components/Header";
 // import "../pattern-components/patterns.scss";
 import "./components.css";
+import axios from "axios";
+
 
 class Table extends Component {
   constructor(props) {
@@ -9,25 +11,36 @@ class Table extends Component {
 
     this.state = {
         data: [
-            {"name": "salami","picture": "picture1", "amount": 4, "aisle": "deli" },
-            {"name": "goat cheese", "picture": "picture2", "amount": 3, "aisle": "dairy" },
-            {"name": "broccoli","picture": "picture1", "amount": 4, "aisle": "produce" }
+            {"name": "salami", "needed": "Yes", "aisle": "deli" },
+            {"name": "goat cheese", "needed": "No", "aisle": "dairy" },
+            {"name": "broccoli", "needed": "Yes", "aisle": "produce" }
         ]
     }
   }
 
+  renderTableHeader() {
+    let header = Object.keys(this.state.data[0])
+    return header.map((key, index) => {
+       return <th key={index}>{key.toUpperCase()}</th>
+    })
+ }
+
   renderTableData() {
     return this.state.data.map((item, index) => {
-       const { name, picture, amount, aisle } = item //destructuring
+       const { name, needed, aisle } = item //destructuring
        return (
           <tr key={name}>
              <td>{name}</td>
-             <td>{picture}</td>
-             <td>{amount}</td>
+             <td>{needed}</td>
              <td>{aisle}</td>
           </tr>
        )
     })
+ }
+
+ componentDidMount() {
+   axios.get('/api/test')
+    .then((response) => console.log(response));
  }
 
   render() {
@@ -36,6 +49,7 @@ class Table extends Component {
         <Header title="Table" subtitle="A basic boilerplate page." />
         <table id='items'>
             <tbody>
+                <tr>{this.renderTableHeader()}</tr>
                 {this.renderTableData()}
             </tbody>
         </table>
