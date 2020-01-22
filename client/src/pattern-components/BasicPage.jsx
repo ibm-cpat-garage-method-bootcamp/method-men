@@ -7,19 +7,7 @@ class BasicPage extends Component {
     super(props);
     
     this.state = {itemName: '', amount: '', aisle: ''}
-
-    this.handleChange = this.handleChange.bind(this);
   }
-  
-  handleChange = event => {
-    console.log('hey');
-    const name = event.target.name;
-    const value = event.target.value;
-    this.setState({
-      [name]: value
-    })
-   
-  };
 
   
   handleSubmit = event => {
@@ -34,19 +22,18 @@ class BasicPage extends Component {
   render() {
     return (
       <div className="bx--grid pattern-container">
-        <Header title="Basic Page" />
         
       
         <form>
             <label htmlFor="itemName">Item Name</label>
             <input
-              onChange = {this.handleChange}
+              onChange = {this.props.handleChange}
               type="text"
               name="itemName"
             />
             <label htmlFor="amount">amount</label>
             <input
-              onChange = {this.handleChange}
+              onChange = {this.props.handleChange}
                type="text"
                 name="amount"
                 
@@ -56,7 +43,7 @@ class BasicPage extends Component {
             <input
                 type="text"
                 name="aisle"
-                onChange = {this.handleChange}
+                onChange = {this.props.handleChange}
             />
 
         <button onClick = {this.handleSubmit} type="submit" className="bx--row btn btn-primary">Save </button>
