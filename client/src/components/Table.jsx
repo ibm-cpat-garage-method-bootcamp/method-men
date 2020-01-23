@@ -8,47 +8,26 @@ import axios from "axios";
 class Table extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-        data: [
-            {"name": "salami", "needed": "Yes", "aisle": "deli" },
-            {"name": "goat cheese", "needed": "No", "aisle": "dairy" },
-            {"name": "broccoli", "needed": "Yes", "aisle": "produce" }
-        ]
-    }
   }
 
   renderTableHeader() {
-    let header = Object.keys(this.state.data[0])
+    let header = Object.keys(this.props.data[0])
     return header.map((key, index) => {
        return <th key={index}>{key.toUpperCase()}</th>
     })
  }
 
   renderTableData() {
-    return this.state.data.map((item, index) => {
-       const { name, needed, aisle } = item //destructuring
+    return this.props.data.map((item, index) => {
+       const { itemName, needed, aisle } = item //destructuring
        return (
-          <tr key={name}>
-             <td>{name}</td>
+          <tr key={itemName}>
+             <td>{itemName}</td>
              <td>{needed}</td>
              <td>{aisle}</td>
           </tr>
        )
     })
- }
-
- requestData() {
-     axios.get('/api/data')
-      .then(({ data }) => {
-          this.setState({
-            data
-          })
-      })
- }
-
- componentDidMount() {
-   this.requestData()
  }
 
   render() {
