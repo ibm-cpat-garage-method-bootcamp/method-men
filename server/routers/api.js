@@ -18,6 +18,7 @@ const apiHost = process.env.API_HOST || 'localhost:3001';
 module.exports = function(app){
   app.use('/api/data', dataRequestHandler);
   app.post('/api/dataUpdate', dataUpdateHandler);
+  app.post('/api/toggleUpdate', toggleUpdateHandler);
 };
 
 const dataRequestHandler = (req, res) => {
@@ -40,4 +41,26 @@ const dataUpdateHandler = (req, res) => {
       res.send('you wrote a new file!!');
     })
   })
+}
+
+const toggleUpdateHandler = (req, res) => {
+  let targetItem = req.body.itemName;
+  fs.readFile('./server/data/db.json', 'utf8', (err, data) => {
+    let fileData = JSON.parse(data);
+    for (let i = 0; i < fileData.length; i++) {
+      if (fileData[i].itemName === targetItem) {
+        if (fileData[i].needed === 'Yes') {
+          fileData[i].needed = 'No';
+          break;
+        } else if (fileData[i].needed === 'No') {
+          fileData[i].needed = 'Yes';
+          break;
+        }
+      }
+    }
+    fs.writeFile('./server/data/db.json', JSON.stringify(fileData), (err, data) => {
+      console.log(data);
+      res.send('You toggled an item!!!');
+    });
+  });
 }

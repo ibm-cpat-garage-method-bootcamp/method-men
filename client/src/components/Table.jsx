@@ -22,7 +22,7 @@ class Table extends Component {
        const { itemName, needed, aisle } = item //destructuring
        return (
           <tr key={itemName}>
-             <td>{itemName}</td>
+             <td onClick={this.props.toggleNeeded}>{itemName}</td>
              <td>{needed}</td>
              <td>{aisle}</td>
           </tr>

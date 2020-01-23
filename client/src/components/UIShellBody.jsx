@@ -22,6 +22,7 @@ class UIShellBody extends Component {
     this.handleChange = this.handleChange.bind(this); 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleViewUpdate = this.handleViewUpdate.bind(this);
+    this.toggleNeeded = this.toggleNeeded.bind(this);
   }
 
   handleChange = event => {
@@ -74,6 +75,17 @@ class UIShellBody extends Component {
     })
   }
 
+  toggleNeeded(event) {
+    console.log(event.target.innerText);
+    axios.post('/api/toggleUpdate', {
+      itemName: event.target.innerText
+    })
+     .then((response) => {
+       this.requestData();
+       console.log(response);
+     })
+  }
+
 
   components = {
     "Simple List": SimpleList,
@@ -92,7 +104,7 @@ class UIShellBody extends Component {
     }
     return (
       <div className="pattern-container">
-        <Table data={renderedData} showDescription={true} />
+        <Table data={renderedData} showDescription={true} toggleNeeded={this.toggleNeeded}/>
         <PatternName showDescription={true} handleChange={this.handleChange} handleSubmit={this.handleSubmit}/>
         <ViewButton handleViewUpdate={this.handleViewUpdate}/>
       </div>
