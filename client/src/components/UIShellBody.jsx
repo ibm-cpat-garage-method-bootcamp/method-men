@@ -3,6 +3,7 @@ import SimpleList from "../pattern-components/SimpleList";
 import BasicPage from "../pattern-components/BasicPage";
 import "../pattern-components/patterns.scss";
 import Table from './Table';
+import ViewButton from './ViewButton';
 import axios from 'axios';
 
 class UIShellBody extends Component {
@@ -14,11 +15,13 @@ class UIShellBody extends Component {
         {"name": "salami", "needed": "Yes", "aisle": "deli" },
         {"name": "goat cheese", "needed": "No", "aisle": "dairy" },
         {"name": "broccoli", "needed": "Yes", "aisle": "produce" }
-      ]
+      ],
+      view: 'masterList'
     }
 
     this.handleChange = this.handleChange.bind(this); 
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleViewUpdate = this.handleViewUpdate.bind(this);
   }
 
   handleChange = event => {
@@ -33,8 +36,16 @@ class UIShellBody extends Component {
   requestData() {
     axios.get('/api/data')
      .then(({ data }) => {
+         let neededData = [];
+         for (let i = 0; i < data.length; i++) {
+           if (data[i].needed === 'Yes') {
+             neededData.push(data[i]);
+           }
+         }
+         neededData = neededData.sort((a, b) => b.aisle < a.aisle);
          this.setState({
-           data
+           data,
+           neededData,
          })
      })
   }
@@ -56,6 +67,13 @@ class UIShellBody extends Component {
     this.requestData();
   }
 
+  handleViewUpdate(event) {
+    event.preventDefault();
+    this.setState({
+      view: event.target.name
+    })
+  }
+
 
   components = {
     "Simple List": SimpleList,
@@ -66,10 +84,17 @@ class UIShellBody extends Component {
   render() {
     let curScreen = this.defaultComponent;
     const PatternName = this.components[curScreen];
+    let renderedData;
+    if (this.state.view === 'masterList') {
+      renderedData = this.state.data;
+    } else if (this.state.view === 'groceryList') {
+      renderedData = this.state.neededData;
+    }
     return (
       <div className="pattern-container">
-        <Table data={this.state.data} showDescription={true} />
+        <Table data={renderedData} showDescription={true} />
         <PatternName showDescription={true} handleChange={this.handleChange} handleSubmit={this.handleSubmit}/>
+        <ViewButton handleViewUpdate={this.handleViewUpdate}/>
       </div>
     );  
   }
