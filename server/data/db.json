@@ -1,6 +1,1 @@
-[
-    {"name": "salami", "needed": "Yes", "aisle": "deli" },
-    {"name": "goat cheese", "needed": "No", "aisle": "dairy" },
-    {"name": "broccoli", "needed": "Yes", "aisle": "produce" },
-    {"name": "cookies", "needed": "Yes", "aisle": "bakery"}
-]
+[{"itemName":"salami","needed":"Yes","aisle":"deli"},{"itemName":"goat cheese","needed":"No","aisle":"dairy"},{"itemName":"broccoli","needed":"Yes","aisle":"produce"},{"itemName":"chicken","needed":"Yes","aisle":"butcher"},{"itemName":"bread","needed":"Yes","aisle":"bakery"}]

@@ -19,10 +19,10 @@ class Table extends Component {
 
   renderTableData() {
     return this.props.data.map((item, index) => {
-       const { name, needed, aisle } = item //destructuring
+       const { itemName, needed, aisle } = item //destructuring
        return (
-          <tr key={name}>
-             <td>{name}</td>
+          <tr key={itemName}>
+             <td>{itemName}</td>
              <td>{needed}</td>
              <td>{aisle}</td>
           </tr>

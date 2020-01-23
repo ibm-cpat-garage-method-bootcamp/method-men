@@ -9,16 +9,6 @@ class BasicPage extends Component {
     this.state = {itemName: '', amount: '', aisle: ''}
   }
 
-  
-  handleSubmit = event => {
-    event.preventDefault();
-    console.log(this.state);
-    console.log(JSON.stringify(this.state));    
-    // this.state = {itemName: '', amount: '', aisle: ''}   
-  };
-  
-  
-
   render() {
     return (
       <div className="bx--grid pattern-container">
@@ -31,13 +21,6 @@ class BasicPage extends Component {
               type="text"
               name="itemName"
             />
-            <label htmlFor="amount">amount</label>
-            <input
-              onChange = {this.props.handleChange}
-               type="text"
-                name="amount"
-                
-            />
          
             <label htmlFor="aisle">aisle</label>
             <input
@@ -46,7 +29,7 @@ class BasicPage extends Component {
                 onChange = {this.props.handleChange}
             />
 
-        <button onClick = {this.handleSubmit} type="submit" className="bx--row btn btn-primary">Save </button>
+        <button onClick = {this.props.handleSubmit} type="submit" className="bx--row btn btn-primary">Save </button>
        </form>
        
       

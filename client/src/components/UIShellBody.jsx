@@ -17,7 +17,8 @@ class UIShellBody extends Component {
       ]
     }
 
-    this.handleChange = this.handleChange.bind(this);
+    this.handleChange = this.handleChange.bind(this); 
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange = event => {
@@ -38,6 +39,19 @@ class UIShellBody extends Component {
      })
   }
 
+  handleSubmit(event) {
+    event.preventDefault();
+    axios.post('/api/dataUpdate', {
+      itemName: this.state.itemName,
+      aisle: this.state.aisle
+    })
+     .then((response) => {
+       this.requestData();
+       console.log(response);
+     })
+    console.log('eyyyyyo');
+  } 
+
   componentDidMount() {
     this.requestData();
   }
@@ -55,7 +69,7 @@ class UIShellBody extends Component {
     return (
       <div className="pattern-container">
         <Table data={this.state.data} showDescription={true} />
-        <PatternName showDescription={true} handleChange={this.handleChange}/>
+        <PatternName showDescription={true} handleChange={this.handleChange} handleSubmit={this.handleSubmit}/>
       </div>
     );  
   }
