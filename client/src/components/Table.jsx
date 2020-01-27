@@ -33,7 +33,7 @@ class Table extends Component {
   render() {
     return (
       <div className="bx--grid pattern-container">
-        <Header title="Table" subtitle="A basic boilerplate page." />
+        <Header title="Fresh Grocers Personalized List" subtitle="List of regularly used items" />
         <table id='items'>
             <tbody>
                 <tr>{this.renderTableHeader()}</tr>
